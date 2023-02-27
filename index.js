@@ -25,10 +25,10 @@ let deadline = 60 // 60 seconds before transaction expired
 // arbitrum
 const network = "arbitrum"
 // const dexName = "zyberswap" // 0x16e71B13fE6079B4312063F7E81F76d165Ad32Ad
-const dexName = "uniswap v3" // 0xE592427A0AEce92De3Edee1F18E0157C05861564, need check fee, default 0.3%
+// const dexName = "uniswap v3" // 0xE592427A0AEce92De3Edee1F18E0157C05861564, need check fee, default 0.3%
 // const dexName = "sushiswap" // 0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506
 // const dexName = "solidlizard" // 0xF26515D5482e2C2FD237149bF6A653dA4794b3D0
-// const dexName = "camelot" // 0xc873fEcbd354f5A56E00E710B90EF4201db2448d
+const dexName = "camelot" // 0xc873fEcbd354f5A56E00E710B90EF4201db2448d
 
 // polygon
 // const network = "polygon"
@@ -224,6 +224,7 @@ const main = async () => {
   const signer = new ethers.Wallet(process.env.PRIVATE_KEY, rpc.provider)
   const dex = getDex(network, dexName, signer)
 
+  console.log(`Wallet address: ${signer.address}`)
   console.log(`Native token amount in wallet: ${ethers.utils.formatEther(await signer.getBalance())}`)
   console.log(`Swapping ${ethers.utils.formatEther(amount)} of native token to token ${tokenAddr}`)
   console.log(`Dex used: ${dexName}, slippage set: ${slippage}%`)
